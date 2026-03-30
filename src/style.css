@@ -1,0 +1,269 @@
+:root {
+  color: #e9f1ff;
+  background:
+    radial-gradient(circle at top, rgba(68, 124, 255, 0.18), transparent 32%),
+    radial-gradient(circle at 20% 20%, rgba(77, 240, 255, 0.18), transparent 20%),
+    linear-gradient(135deg, #020611 0%, #071223 45%, #020611 100%);
+  font-family: Inter, 'Segoe UI', system-ui, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+.page-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(260px, 360px) minmax(420px, 1fr) minmax(260px, 340px);
+  gap: 24px;
+  padding: 28px;
+}
+
+.hud {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.hud-left {
+  padding-right: 8px;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.82rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #7ce7ff;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(3rem, 5vw, 5.2rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.lede {
+  margin: 0;
+  max-width: 30rem;
+  font-size: 1.02rem;
+  color: rgba(233, 241, 255, 0.76);
+}
+
+.legend {
+  display: grid;
+  gap: 12px;
+  color: rgba(233, 241, 255, 0.88);
+}
+
+.legend span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  box-shadow: 0 0 18px currentColor;
+}
+
+.dot-cyan {
+  color: #4df0ff;
+  background: #4df0ff;
+}
+
+.dot-purple {
+  color: #8b7cff;
+  background: #8b7cff;
+}
+
+.dot-gold {
+  color: #ffd166;
+  background: #ffd166;
+}
+
+.scene-wrap {
+  position: relative;
+  min-height: calc(100vh - 56px);
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(145, 170, 255, 0.18);
+  background: radial-gradient(circle at center, rgba(18, 41, 77, 0.56), rgba(2, 6, 17, 0.1));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 40px 80px rgba(0, 0, 0, 0.4);
+}
+
+#earth-canvas,
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.grid-overlay {
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(123, 145, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(123, 145, 255, 0.08) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(circle at center, black 22%, transparent 82%);
+}
+
+.status-bar {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.status-bar > div,
+.panel {
+  backdrop-filter: blur(18px);
+  background: rgba(6, 14, 30, 0.62);
+  border: 1px solid rgba(138, 163, 255, 0.15);
+  border-radius: 18px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
+}
+
+.status-bar > div {
+  padding: 14px 16px;
+}
+
+.label,
+.panel-title,
+.city-row span {
+  color: rgba(200, 213, 255, 0.62);
+}
+
+.label,
+.panel-title {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.status-bar strong,
+.city-row b {
+  font-size: 1.15rem;
+}
+
+.hud-right {
+  gap: 16px;
+  justify-content: center;
+}
+
+.panel {
+  padding: 18px;
+}
+
+.city-list {
+  display: grid;
+  gap: 12px;
+}
+
+.city-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(138, 163, 255, 0.12);
+}
+
+.city-row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.city-row strong,
+.city-row b {
+  display: block;
+}
+
+.city-row span {
+  font-size: 0.85rem;
+}
+
+.small-panel ul {
+  margin: 0;
+  padding-left: 18px;
+  color: rgba(233, 241, 255, 0.78);
+}
+
+.small-panel li + li {
+  margin-top: 8px;
+}
+
+@media (max-width: 1180px) {
+  body {
+    overflow: auto;
+  }
+
+  .page-shell {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+
+  .scene-wrap {
+    min-height: 62vh;
+    order: -1;
+  }
+
+  .hud-left,
+  .hud-right {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 720px) {
+  .page-shell {
+    gap: 18px;
+    padding: 14px;
+  }
+
+  .scene-wrap {
+    min-height: 54vh;
+    border-radius: 22px;
+  }
+
+  .status-bar {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 2.6rem;
+  }
+}
